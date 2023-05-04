@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome To Cure Connect Team Project</h1>
+     
     </div>
   );
 }
