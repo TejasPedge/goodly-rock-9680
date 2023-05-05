@@ -7,6 +7,15 @@ const breakpoints = {
     '872px' : '872px',
     '760px' : '760px',
     '732px' : '732px',
+    '1208px' : '1208px',
+    '1063px' : '1063px',    
+    '955px' : '955px',
+    '816px' : '816px',
+    '734px' : '734px',
+    '620px' : '620px',
+    '301px' : '301px',
+    '247px' : '247px',
+    '241px' : '241px',
 }
 
 // color customizations
