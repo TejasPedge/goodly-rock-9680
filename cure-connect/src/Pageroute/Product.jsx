@@ -19,11 +19,25 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import Paginantion from "./Pagination";
 
 
 export  const Product = () => {
   const [item, setItem] = useState([]);
- 
+  const [page, setPage] = useState(1);
+  const [loader, setLoader] = useState(false);
+  const [totalPage, setTotalPage] = useState("");
+  const [sort, setSort] = useState("1");
+  const [filter, setFilter] = useState("");
+  const dispatch = useDispatch();
+  const params = useParams();
+
+  // const { category } = params;
+  // const [filterValues, setfilterValues] = useState([]);
+  // const [brands, setBrand] = useState([]);
+  // const navigate = useNavigate();
  
 
  
@@ -32,17 +46,51 @@ export  const Product = () => {
  
   useEffect(() => {
     // setLoader(true);
+    setLoader(true);
     axios
       .get("http://localhost:3000/product")
       .then((res) => {
         setItem(res.data);
-        
+        // setPage(res.page);
+        // setTotalPage(res.totalPages);
+        setLoader(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
 
-  
+  // const handleFilterStr = () => {
+  //   let str = "";
+  //   if (filterValues.length > 0) {
+  //     filterValues.forEach((el) => {
+  //       str += `&filter=brand:${el}`;
+  //     });
+  //     setFilter(str);
+  //   } else {
+  //     setFilter(str);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   setLoader(true);
+  //   axios
+  //     .get(`http://localhost:3000/product?category=${category}`, {
+        
+  //     })
+  //     .then((res) => {
+  //       let obj = {};
+  //       let arr = [];
+  //       res.data.data.forEach((el) => {
+  //         if (obj[el.brand] == undefined) {
+  //           obj[el.brand] = 1;
+  //           arr.push(el.brand);
+  //         }
+  //       });
+  //       setBrand([...arr]);
+  //       setLoader(false);
+  //     });
+  // }, [category]);
+
 
  
 
@@ -71,9 +119,7 @@ export  const Product = () => {
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel pb={4}>
-                
-              </AccordionPanel>
+              <AccordionPanel pb={4}></AccordionPanel>
             </AccordionItem>
 
             <AccordionItem>
@@ -85,7 +131,6 @@ export  const Product = () => {
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
-           
             </AccordionItem>
           </Accordion>
         </Box>
@@ -108,7 +153,6 @@ export  const Product = () => {
                   borderRadius={".5rem"}
                   textAlign={"center"}
                   maxH="400px"
-                 
                 >
                   <Image w={"50%"} src={ele.image[0]} />
 
@@ -121,7 +165,7 @@ export  const Product = () => {
                       w={"14rem"}
                       border={"1px solid orange"}
                       _hover={{ bg: "orange", color: "white" }}
-                    //   onClick={() => handleAddtoCart(ele)}
+                      //   onClick={() => handleAddtoCart(ele)}
                     >
                       Add to Cart
                     </Button>
@@ -131,7 +175,13 @@ export  const Product = () => {
             })}
         </SimpleGrid>
       </Box>
-      
+      <Paginantion
+        key={page}
+        page={page}
+        setPage={setPage}
+        divide={5}
+        totalPage={totalPage}
+      />
     </Box>
   );
 }
