@@ -1,5 +1,5 @@
 .mySwiper {
-    border : 2px solid aqua;
+    padding-bottom: 25px;
 }
 
 .slide {
@@ -11,4 +11,5 @@
 
 .slide:hover {
     cursor: pointer;
+    border-color: rgb(0, 255, 195);
 }

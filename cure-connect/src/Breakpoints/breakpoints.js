@@ -19,6 +19,7 @@ const breakpoints = {
     '595px' : '595px',
     '375px' : '375px',
     '282px' : '282px',
+    '478px' : '478px',
 }
 
 // color customizations
