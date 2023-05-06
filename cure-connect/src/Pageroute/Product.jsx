@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import {
   Accordion,
@@ -19,80 +17,131 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+// import Paginantion from "../admin/components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
 import Paginantion from "./Pagination";
+// import { addToCart } from "../redux/CartReducer/action";
 
 
-export  const Product = () => {
+
+const MultiProductPage = () => {
   const [item, setItem] = useState([]);
-  const [page, setPage] = useState(1);
   const [loader, setLoader] = useState(false);
+  const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState("");
   const [sort, setSort] = useState("1");
   const [filter, setFilter] = useState("");
   const dispatch = useDispatch();
   const params = useParams();
 
-  // const { category } = params;
-  // const [filterValues, setfilterValues] = useState([]);
-  // const [brands, setBrand] = useState([]);
-  // const navigate = useNavigate();
- 
+  const { category } = params;
+  const { token } = useSelector((s) => s.AuthReducer);
+  const [filterValues, setfilterValues] = useState([]);
+  const [brands, setBrand] = useState([]);
+  const navigate = useNavigate();
 
- 
-   
-  
- 
   useEffect(() => {
-    // setLoader(true);
     setLoader(true);
     axios
-      .get("http://localhost:3000/product")
+      .get(
+        `http://localhost:3000/product?category=${category}&page=${page}&limit=${8}&sort=price:${sort}${filter}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
-        setItem(res.data);
-        // setPage(res.page);
-        // setTotalPage(res.totalPages);
+        setItem(res.data.data);
+        setPage(res.data.page);
+        setTotalPage(res.data.totalPages);
         setLoader(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [page, category, token, sort, filter]);
 
+  const handleAddtoCart = ({
+    image,
+    title,
+    description,
+    price,
+    originalPrice,
+    sizes,
+    category,
+    rating,
+    review,
+    flavour,
+    brand,
+    tags,
+    stock,
+    adminId,
+    _id,
+    userId,
+    quantity,
+  }) => {
+    dispatch(
+      // addToCart({
+      //   image,
+      //   title,
+      //   description,
+      //   price,
+      //   originalPrice,
+      //   sizes,
+      //   category,
+      //   rating,
+      //   review,
+      //   flavour,
+      //   brand,
+      //   tags,
+      //   stock,
+      //   adminId,
+      //   pid: _id,
+      //   userId,
+      //   quantity: 1,
+      // })
+    );
+    
+  };
+  useEffect(() => {
+    handleFilterStr();
+  }, [filterValues]);
 
-  // const handleFilterStr = () => {
-  //   let str = "";
-  //   if (filterValues.length > 0) {
-  //     filterValues.forEach((el) => {
-  //       str += `&filter=brand:${el}`;
-  //     });
-  //     setFilter(str);
-  //   } else {
-  //     setFilter(str);
-  //   }
-  // };
+  const handleFilterStr = () => {
+    let str = "";
+    if (filterValues.length > 0) {
+      filterValues.forEach((el) => {
+        str += `&filter=brand:${el}`;
+      });
+      setFilter(str);
+    } else {
+      setFilter(str);
+    }
+  };
 
-  // useEffect(() => {
-  //   setLoader(true);
-  //   axios
-  //     .get(`http://localhost:3000/product?category=${category}`, {
-        
-  //     })
-  //     .then((res) => {
-  //       let obj = {};
-  //       let arr = [];
-  //       res.data.data.forEach((el) => {
-  //         if (obj[el.brand] == undefined) {
-  //           obj[el.brand] = 1;
-  //           arr.push(el.brand);
-  //         }
-  //       });
-  //       setBrand([...arr]);
-  //       setLoader(false);
-  //     });
-  // }, [category]);
+  useEffect(() => {
+    setLoader(true);
+    axios
+      .get(`http://localhost:3000/product?category=${category}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let obj = {};
+        let arr = [];
+        res.data.data.forEach((el) => {
+          if (obj[el.brand] == undefined) {
+            obj[el.brand] = 1;
+            arr.push(el.brand);
+          }
+        });
+        setBrand([...arr]);
+        setLoader(false);
+      });
+  }, [category]);
 
-
- 
+  
 
   return (
     <Box>
@@ -119,7 +168,12 @@ export  const Product = () => {
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel pb={4}></AccordionPanel>
+              <AccordionPanel pb={4}>
+                <Flex gap={"2rem"}>
+                  <Button onClick={() => setSort("1")}>Low to High</Button>
+                  <Button onClick={() => setSort("-1")}>High to Low</Button>
+                </Flex>
+              </AccordionPanel>
             </AccordionItem>
 
             <AccordionItem>
@@ -131,6 +185,18 @@ export  const Product = () => {
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
+              <AccordionPanel pb={4}>
+                <Flex direction="column" gap={"2rem"}>
+                  <CheckboxGroup
+                    value={filterValues}
+                    onChange={(e) => setfilterValues(e)}
+                  >
+                    {brands?.map((ele) => {
+                      return <Checkbox value={ele}>{ele}</Checkbox>;
+                    })}
+                  </CheckboxGroup>
+                </Flex>
+              </AccordionPanel>
             </AccordionItem>
           </Accordion>
         </Box>
@@ -153,6 +219,7 @@ export  const Product = () => {
                   borderRadius={".5rem"}
                   textAlign={"center"}
                   maxH="400px"
+                  onClick={() => navigate(`/product/${ele._id}`)}
                 >
                   <Image w={"50%"} src={ele.image[0]} />
 
@@ -165,7 +232,7 @@ export  const Product = () => {
                       w={"14rem"}
                       border={"1px solid orange"}
                       _hover={{ bg: "orange", color: "white" }}
-                      //   onClick={() => handleAddtoCart(ele)}
+                      onClick={() => handleAddtoCart(ele)}
                     >
                       Add to Cart
                     </Button>
@@ -184,4 +251,6 @@ export  const Product = () => {
       />
     </Box>
   );
-}
+};
+
+export default MultiProductPage;
