@@ -1,0 +1,14 @@
+.mySwiper {
+    border : 2px solid aqua;
+}
+
+.slide {
+    border: 1px solid rgba(128, 128, 128, 0.438);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.slide:hover {
+    cursor: pointer;
+}

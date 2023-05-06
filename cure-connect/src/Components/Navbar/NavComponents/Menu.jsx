@@ -18,7 +18,7 @@ const ResponsiveMenu = () => {
 
 
     return (
-        <Box display={{base : 'flex','1208px' : 'none'}} alignItems={'center'}>
+        <Box zIndex={2} display={{base : 'flex','1208px' : 'none'}} alignItems={'center'}>
             <Menu>
                 {({isOpen}) => (<>
                             <MenuButton>
