@@ -5,12 +5,14 @@ import Navbar from './Components/Navbar/Navbar';
 
 
 
+
 function App() {
 
   useSelector((state) => console.log(state));
   return (
     <Box>
       <Navbar />
+    
        </Box>
   );
 }

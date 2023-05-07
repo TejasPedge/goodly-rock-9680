@@ -1,256 +1,155 @@
-import React, { useEffect, useState } from "react";
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Flex,
-  Heading,
-  Image,
-  SimpleGrid,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
-import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
-// import Paginantion from "../admin/components/Pagination";
+import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Paginantion from "./Pagination";
-// import { addToCart } from "../redux/CartReducer/action";
 
 
+import { Box, Center, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 
-const MultiProductPage = () => {
-  const [item, setItem] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState("");
-  const [sort, setSort] = useState("1");
-  const [filter, setFilter] = useState("");
+import { useLocation, useSearchParams } from "react-router-dom";
+
+import { Button,useToast } from "@chakra-ui/react";
+
+import { Link } from "react-router-dom";
+
+
+import axios from "axios";
+import { getProducts } from "../Redux/Product Reducer/action";
+import Sidebar from "./Sidebar";
+
+function Product() {
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const params = useParams();
+  const location = useLocation();
+  const { products, isLoading } = useSelector((store) => store.ProductReducer);
 
-  const { category } = params;
-  const { token } = useSelector((s) => s.AuthReducer);
-  const [filterValues, setfilterValues] = useState([]);
-  const [brands, setBrand] = useState([]);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setLoader(true);
-    axios
-      .get(
-        `http://localhost:3000/product?category=${category}&page=${page}&limit=${8}&sort=price:${sort}${filter}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        setItem(res.data.data);
-        setPage(res.data.page);
-        setTotalPage(res.data.totalPages);
-        setLoader(false);
-      })
-      .catch((err) => console.log(err));
-  }, [page, category, token, sort, filter]);
-
-  const handleAddtoCart = ({
-    image,
-    title,
-    description,
-    price,
-    originalPrice,
-    sizes,
-    category,
-    rating,
-    review,
-    flavour,
-    brand,
-    tags,
-    stock,
-    adminId,
-    _id,
-    userId,
-    quantity,
-  }) => {
-    dispatch(
-      // addToCart({
-      //   image,
-      //   title,
-      //   description,
-      //   price,
-      //   originalPrice,
-      //   sizes,
-      //   category,
-      //   rating,
-      //   review,
-      //   flavour,
-      //   brand,
-      //   tags,
-      //   stock,
-      //   adminId,
-      //   pid: _id,
-      //   userId,
-      //   quantity: 1,
-      // })
-    );
-    
-  };
-  useEffect(() => {
-    handleFilterStr();
-  }, [filterValues]);
-
-  const handleFilterStr = () => {
-    let str = "";
-    if (filterValues.length > 0) {
-      filterValues.forEach((el) => {
-        str += `&filter=brand:${el}`;
-      });
-      setFilter(str);
-    } else {
-      setFilter(str);
-    }
+  //console.log(location.search);
+  let obj = {
+    params: {
+      brand: searchParams.getAll("brand"),
+      _sort: "price",
+      _order: searchParams.get("order"),
+      _page: searchParams.get("page"),
+    },
   };
 
   useEffect(() => {
-    setLoader(true);
-    axios
-      .get(`http://localhost:3000/product?category=${category}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        let obj = {};
-        let arr = [];
-        res.data.data.forEach((el) => {
-          if (obj[el.brand] == undefined) {
-            obj[el.brand] = 1;
-            arr.push(el.brand);
-          }
-        });
-        setBrand([...arr]);
-        setLoader(false);
-      });
-  }, [category]);
+    dispatch(getProducts(obj));
+  }, [location.search]);
 
+
+   const toast = useToast();
+   const handleClick = (el) => {
+     toast({
+       title: "Product Added",
+       description: "We've added your product to cart.",
+       status: "success",
+       duration: 9000,
+       isClosable: true,
+       position: "top",
+     });
+     const newObj = { ...el, ["quantity"]: 1 };
+     axios
+       .post(`https://wild-pink-slug-sock.cyclic.app/cartt`, newObj)
+       .then((response) => response.json())
+       .then((data) => {
+         console.log("Success:", data);
+       })
+       .catch((error) => {
+         console.error("Error:", error);
+       });
+   };
   
-
   return (
-    <Box>
+    <Flex
+      justifyContent={"center"}
+      flexDirection={{ lg: "row", md: "row", sm: "column", base: "column" }}
+      maxWidth={"95%"}
+      margin="auto"
+      // alignItems={"center"}
+    >
       <Box
-        display={{ sm: "flex", md: "flex" }}
-        gap={"2rem"}
-        w={{ base: "70%", sm: "80%", md: "90%" }}
-        m={"auto"}
-        mt={"2rem"}
-        mb={"2rem"}
+        justifyContent={"center"}
+       
+        mt={{ md: "130px", lg: "130px", sm: "none", base: "none" }}
       >
-        <Box
-          borderRadius={"1rem"}
-          w={{ base: "15rem", sm: "25", md: "25rem", lg: "20rem" }}
-          boxShadow="rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-        >
-          <Accordion defaultIndex={[0, 1]} mt={"1rem"} allowMultiple>
-            <AccordionItem>
-              <AccordionButton>
-                <Box as="span" flex="1" textAlign="left">
-                  <Text fontSize={"xl"} fontWeight={"medium"}>
-                    Sort By Price
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel pb={4}>
-                <Flex gap={"2rem"}>
-                  <Button onClick={() => setSort("1")}>Low to High</Button>
-                  <Button onClick={() => setSort("-1")}>High to Low</Button>
-                </Flex>
-              </AccordionPanel>
-            </AccordionItem>
+        <Sidebar />
+      </Box>
 
-            <AccordionItem>
-              <AccordionButton>
-                <Box as="span" flex="1" textAlign="left">
-                  <Text fontSize={"xl"} fontWeight={"medium"}>
-                    Brand Filter
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel pb={4}>
-                <Flex direction="column" gap={"2rem"}>
-                  <CheckboxGroup
-                    value={filterValues}
-                    onChange={(e) => setfilterValues(e)}
-                  >
-                    {brands?.map((ele) => {
-                      return <Checkbox value={ele}>{ele}</Checkbox>;
-                    })}
-                  </CheckboxGroup>
-                </Flex>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Box>
-        <SimpleGrid
-          columns={{ base: "1", sm: "1", md: "2", lg: "4" }}
-          spacing={10}
-        >
-          {item &&
-            item?.map((ele) => {
+      <Box width={"auto"}>
+        <Text fontSize="4xl" display={"flex"} alignItems={"center"} justifyContent={"center"}>Products...</Text>
+        {isLoading ? (
+          <Center marginTop={"200px"}>
+           <h1>loading....</h1>
+          </Center>
+        ) : (
+          <SimpleGrid
+            columns={[1, 2, 2, 4]}
+            gap={"30px"}
+            spacing={9}
+            margin={9}
+          >
+            {products.map((el, i) => {
               return (
                 <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-                  gap={"1rem"}
-                  p={"1rem"}
-                  w={"15rem"}
-                  alignItems={"center"}
-                  justifyContent="center"
-                  borderRadius={".5rem"}
-                  textAlign={"center"}
-                  maxH="400px"
-                  onClick={() => navigate(`/product/${ele._id}`)}
+                  display={"grid"}
+                  gap={"5"}
+                  p={4}
+                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
                 >
-                  <Image w={"50%"} src={ele.image[0]} />
+                  <Link to={`/product/${el._id}`}>
+                    <Box>
+                      <Box h={"210px"} display="grid" alignItems={"center"}>
+                        <img
+                          style={{ margin: "auto" }}
+                          src={el.image[0]}
+                          alt="product_image"
+                        />
+                      </Box>
+                      <Box>
+                        <Text fontSize="lg">
+                          <i>{el.title.substring(0, 20).concat("...")}</i>
+                        </Text>
 
-                  <Box>{ele.title}</Box>
-                  <Text fontWeight={"semibold"}>₹{ele.price}</Text>
-                  <Box>
-                    <Button
-                      bg={"orange.50"}
-                      color={"#ff8913"}
-                      w={"14rem"}
-                      border={"1px solid orange"}
-                      _hover={{ bg: "orange", color: "white" }}
-                      onClick={() => handleAddtoCart(ele)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Box>
+                        <Text fontSize="md">
+                          Brand:{" "}
+                          <b>
+                            <i>{el.brand}</i>
+                          </b>
+                        </Text>
+
+                        <Text fontSize="sm" color="blue">
+                          Rating:
+                          <b>
+                            {" "}
+                            <i>{el.rating}</i> ★
+                          </b>
+                        </Text>
+                        <Text fontSize="md" color={"black"}>
+                          Price:{" "}
+                          <i>
+                            {" "}
+                            <b>₹{el.price}</b>
+                          </i>
+                        </Text>
+                      </Box>
+                    </Box>
+                  </Link>
+                  <Button
+                    onClick={() => handleClick(el)}
+                    bg={"orange.200"}
+                    color="red.900"
+                  >
+                    Add to cart
+                  </Button>
                 </Box>
               );
             })}
-        </SimpleGrid>
+          </SimpleGrid>
+        )}
       </Box>
-      <Paginantion
-        key={page}
-        page={page}
-        setPage={setPage}
-        divide={5}
-        totalPage={totalPage}
-      />
-    </Box>
+      
+    </Flex>
   );
-};
+}
 
-export default MultiProductPage;
+export default Product;
