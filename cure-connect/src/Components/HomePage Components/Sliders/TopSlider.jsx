@@ -1,7 +1,7 @@
 import React, { useRef, useState,useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Box } from "@chakra-ui/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,7 +14,7 @@ import { Image } from "@chakra-ui/react";
 import { Autoplay,Pagination, Navigation } from "swiper";
 
 
-export default function TopSlider() {
+export default function TopSlider({data,autoplay,isRounded,speed}) {
 
   const [isNavigation, setNavigation] = useState(true);
 
@@ -42,8 +42,8 @@ export default function TopSlider() {
       <Swiper
         slidesPerView={1}
         loop={true}
-        speed={'800'}
-        autoplay={{
+        speed={speed || '800'}
+        autoplay={autoplay === false ? false : {
           delay: 2500,
           disableOnInteraction: false,
         }}
@@ -54,41 +54,14 @@ export default function TopSlider() {
         modules={[Autoplay,Pagination,Navigation]}
         className={'mySwiper'}
       >
-        {/* ----1--- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img7.hkrtcdn.com/27423/bnr_2742256_o.jpg'/>
-        </SwiperSlide>
+      
+        {data.map((el) => {
+        return <Box  key = {el.img} overflow={'hidden'}>
+                  <SwiperSlide  className={'slides'}>
+                    <Image cursor={'pointer'} borderRadius={isRounded ? '14px' : ''} src = {el.img}/>
+                  </SwiperSlide>
+        </Box>})}
 
-        {/* ----2---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img7.hkrtcdn.com/27424/bnr_2742386_o.jpg'/>
-        </SwiperSlide>
-
-        {/* ----3---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img7.hkrtcdn.com/27423/bnr_2742266_o.jpg'/>
-        </SwiperSlide>
-
-        {/* ----4---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img7.hkrtcdn.com/27423/bnr_2742296_o.jpg'/>
-        </SwiperSlide>
-
-        {/* ----5---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img9.hkrtcdn.com/27423/bnr_2742278_o.jpg'/>
-        </SwiperSlide>
-
-        {/* ----6---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img7.hkrtcdn.com/27432/bnr_2743156_o.jpg'/>
-        </SwiperSlide>
-
-        {/* ----7---- */}
-        <SwiperSlide className={'slides'}>
-          <Image src = 'https://img3.hkrtcdn.com/27424/bnr_2742382_o.jpg'/>
-        </SwiperSlide>
-        
       </Swiper>
     </>
   );

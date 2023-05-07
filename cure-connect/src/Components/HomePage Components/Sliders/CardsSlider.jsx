@@ -1,6 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useState,useEffect } from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,6 +13,24 @@ import { Pagination, Navigation } from "swiper";
 import { Image } from "@chakra-ui/react";
 
 export default function CardSlider({data}) {
+
+    const [isNavigation, setNavigation] = useState(true);
+
+    useEffect(() => {
+
+        function handleResize() {
+            if (window.innerWidth <= 620) {
+                setNavigation(false);
+            } else {
+                setNavigation(true);
+            }
+    }
+      // listen for resize events
+    window.addEventListener("resize", handleResize);
+    
+    handleResize();
+
+    },[isNavigation]);
 
 return (
     <>
@@ -57,7 +75,7 @@ return (
 
             }
         }
-        navigation={true}
+        navigation={isNavigation}
         pagination={false}
         modules={[Pagination,Navigation]}
         className={style.mySwiper}

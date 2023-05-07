@@ -68,7 +68,7 @@ return (
                         <Text fontSize = '10'>0</Text>
                     </Badge>
                 </Box>
-                <Box  variant={'none'} onClick={toggleColorMode}>
+                <Box cursor={'pointer'}  variant={'none'} onClick={toggleColorMode}>
                     {colorMode === 'light' ? <MdOutlineLightMode size = '20px'/> : <MdDarkMode size = '20px' color = 'aqua' />}
                 </Box>
             </HStack>

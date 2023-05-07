@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import {AiFillStar} from 'react-icons/ai'
@@ -17,6 +17,24 @@ import { Box, Button, HStack, Image, Text, useColorMode } from "@chakra-ui/react
 export default function BlockbusterSlider({data}) {
 
     const {colorMode} = useColorMode();
+
+    const [isNavigation, setNavigation] = useState(true);
+
+    useEffect(() => {
+
+        function handleResize() {
+            if (window.innerWidth <= 620) {
+                setNavigation(false);
+            } else {
+                setNavigation(true);
+            }
+    }
+      // listen for resize events
+    window.addEventListener("resize", handleResize);
+    
+    handleResize();
+
+    },[isNavigation]);
 
 return (
     <>
@@ -61,7 +79,7 @@ return (
 
             }
         }
-        navigation={true}
+        navigation={isNavigation}
         pagination={false}
         modules={[Pagination,Navigation]}
         className={style.mySwiper}
@@ -70,8 +88,8 @@ return (
         
             return <SwiperSlide className={style.slide}>
                         <Box>
-                            <Box position={'relative'} bg = 'white' p = '10%' display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                                <Image w = '70%' src = {el.img}></Image>
+                            <Box overflow={'hidden'} position={'relative'} bg = 'white' p = '10%' display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                                <Image _hover={{transform : 'scale(1.4)'}} transition={'0.5s'} w = '70%' src = {el.img}></Image>
                                 <Image w = '11%' cursor={'pointer'} top = '10px' right={'10px'} position={'absolute'} src = 'https://static1.hkrtcdn.com/hknext/static/media/common/variant/wishlist/heart.svg'></Image>
                                 <HStack display = {el.offer ? 'flex' : 'none'} color={'white'} bottom={'8px'} right={'10px'} borderRadius={'3px'} px = '10px' py = '2px' position={'absolute'} bg = '#249346'>
                                     <Image src = 'https://static1.hkrtcdn.com/hknext/static/media/common/variant/freebie-old.svg'></Image>
