@@ -1,11 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector } from 'react-redux';
+import { Box } from '@chakra-ui/react';
+import Navbar from './Components/Navbar/Navbar';
+
+
+
 
 function App() {
+
+  useSelector((state) => console.log(state));
   return (
-    <div className="App">
-      <h1>Welcome To Cure Connect Team Project</h1>
-    </div>
+    <Box>
+      <Navbar />
+    
+       </Box>
   );
 }
 
