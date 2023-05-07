@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -8,7 +8,6 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
@@ -56,7 +55,10 @@ export default function Login() {
               </Stack>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  New User? <Link color={"blue.400"}>Register Here</Link>
+                  New User?{" "}
+                  <Link to="/register" style={{ color: "#34c7c7" }}>
+                    Register Here
+                  </Link>
                 </Text>
               </Stack>
               <Button
