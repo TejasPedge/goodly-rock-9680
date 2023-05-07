@@ -1,16 +1,20 @@
-import React from 'react'
-import { Route,Routes } from 'react-router-dom'
-import Product from '../Pageroute/Product';
-import Singleproduct from '../Pageroute/Singleproduct';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Product from "../Pageroute/Product";
+import Singleproduct from "../Pageroute/Singleproduct";
+import Login from "../Pageroute/Login";
+import Signup from "../Pageroute/SignUp";
 
 const AllRoutes = () => {
-return (
-  <Routes>
-    {/* Routes will be added */}
-    <Route path="/product" element={<Product/>}></Route>
-    <Route path="/product/:id" element={<Singleproduct />}></Route>
-  </Routes>
-);
-}
+  return (
+    <Routes>
+      {/* Routes will be added */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Signup />} />
+      <Route path="/product" element={<Product />}></Route>
+      <Route path="/product/:id" element={<Singleproduct />}></Route>
+    </Routes>
+  );
+};
 
-export default AllRoutes
+export default AllRoutes;
