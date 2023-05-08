@@ -4,6 +4,7 @@ import {HiMenuAlt1} from 'react-icons/hi'
 import { useColorModeValue } from '@chakra-ui/react'
 import {TbDiscount2} from 'react-icons/tb'
 import ResponsiveMenu from './Menu'
+import { Link } from 'react-router-dom'
 
 const NavOptions = () => {
   return (
@@ -17,7 +18,9 @@ const NavOptions = () => {
         {/* Best Sellers */}
         <HStack >
           <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5567 19.5C9.35571 19.5 8.14618 19.0402 7.23477 18.1291L3.3762 14.272C2.43924 13.3354 1.94521 12.0412 2.00483 10.7214L2.20926 6.45561C2.30296 4.42062 3.91282 2.81136 5.9571 2.70918L10.216 2.50483C11.5448 2.44523 12.831 2.93908 13.7679 3.87568L17.6265 7.7328C19.4578 9.56345 19.4578 12.5521 17.6265 14.3827L13.8872 18.1206C12.9673 19.0402 11.7662 19.5 10.5567 19.5Z" fill="#33C4C5"></path><path d="M7.5 10.5C6.12308 10.5 5 9.37692 5 8C5 6.62308 6.12308 5.5 7.5 5.5C8.87692 5.5 10 6.62308 10 8C10 9.37692 8.87692 10.5 7.5 10.5ZM7.5 6.65385C6.76154 6.65385 6.15385 7.26154 6.15385 8C6.15385 8.73846 6.76154 9.34615 7.5 9.34615C8.23846 9.34615 8.84615 8.73846 8.84615 8C8.84615 7.26154 8.23846 6.65385 7.5 6.65385Z" fill="white"></path><path d="M10.6802 15.5C10.5073 15.5 10.3344 15.4363 10.1979 15.2999C9.93403 15.0362 9.93403 14.5996 10.1979 14.3358L13.8376 10.6978C14.1015 10.4341 14.5382 10.4341 14.8021 10.6978C15.066 10.9616 15.066 11.3981 14.8021 11.6619L11.1624 15.2999C11.0259 15.4363 10.853 15.5 10.6802 15.5Z" fill="white"></path></svg>
-          <Text cursor={'pointer'} fontSize={'13px'} _hover = {{color : '#00b5b7'}} fontWeight={500} color = {useColorModeValue('black','white')}>Best Sellers</Text>
+          <Link to = '/product'>
+            <Text cursor={'pointer'} fontSize={'13px'} _hover = {{color : '#00b5b7'}} fontWeight={500} color = {useColorModeValue('black','white')}>Best Sellers</Text>
+          </Link>
         </HStack>
 
         {/* Brands */}
