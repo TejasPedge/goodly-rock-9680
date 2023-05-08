@@ -39,6 +39,7 @@ export default function BlockbusterSlider({data}) {
 return (
     <>
     <Swiper
+        key = {Math.random()}
         slidesPerView={1}
         speed={'800'}
         slidesPerGroup = {1}
@@ -84,9 +85,9 @@ return (
         modules={[Pagination,Navigation]}
         className={style.mySwiper}
     >
-        {data.map ((el) => {
+        {data.map ((el,i) => {
         
-            return <SwiperSlide className={style.slide}>
+            return <SwiperSlide key = {Math.random()} className={style.slide}>
                         <Box>
                             <Box overflow={'hidden'} position={'relative'} bg = 'white' p = '10%' display={'flex'} justifyContent={'center'} alignItems={'center'}>
                                 <Image _hover={{transform : 'scale(1.4)'}} transition={'0.5s'} w = '70%' src = {el.img}></Image>
@@ -96,7 +97,7 @@ return (
                                     <Text fontSize={12}>{el.offer}</Text>
                                 </HStack>
                             </Box>
-                            
+
                             <Box bg = '#00e5ff1f'  p = '10px'>
 
                                 <HStack visibility = {el.ratings ? 'visible' : 'hidden'} justify={'space-between'}>

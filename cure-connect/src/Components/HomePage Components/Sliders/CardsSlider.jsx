@@ -35,6 +35,7 @@ export default function CardSlider({data}) {
 return (
     <>
     <Swiper
+        key = {Math.random()}
         slidesPerView={1}
         speed={'800'}
         slidesPerGroup = {1}
@@ -82,7 +83,7 @@ return (
     >
         {data.map ((el) => {
         
-            return <SwiperSlide className={style.slide}>
+            return <SwiperSlide key = {Math.random()}  className={style.slide}>
                         <Image w = '100%' src = {el.img}></Image>
             </SwiperSlide>
 })}

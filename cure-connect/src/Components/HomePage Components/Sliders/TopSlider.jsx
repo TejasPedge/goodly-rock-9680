@@ -40,6 +40,7 @@ export default function TopSlider({data,autoplay,isRounded,speed}) {
   return (
     <>
       <Swiper
+        key = {Math.random()}
         slidesPerView={1}
         loop={true}
         speed={speed || '800'}
@@ -55,8 +56,8 @@ export default function TopSlider({data,autoplay,isRounded,speed}) {
         className={'mySwiper'}
       >
       
-        {data.map((el) => {
-        return <Box  key = {el.img} overflow={'hidden'}>
+        {data.map((el,i) => {
+        return <Box overflow={'hidden'}>
                   <SwiperSlide  className={'slides'}>
                     <Image cursor={'pointer'} borderRadius={isRounded ? '14px' : ''} src = {el.img}/>
                   </SwiperSlide>

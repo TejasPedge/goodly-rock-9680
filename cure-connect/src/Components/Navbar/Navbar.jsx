@@ -25,7 +25,7 @@ return (
         <HStack w = {{base : '95%','816px' : '85%','1063px' : '78%'}} m = 'auto' justify={'space-between'}>
             {/* Logo of the image */}
 
-            <HStack w = {{'620px' : 'none'}}>
+            <HStack key = {Math.random()} w = {{'620px' : 'none'}}>
                 <Box mr='10px' display = {{base : 'flex','620px' : 'none'}}>
                     <HiMenuAlt1 onClick = {onOpen} color = {useColorModeValue('black','aqua')} size = '25px'/>
                 </Box>
@@ -56,7 +56,7 @@ return (
                 }}/>
             </InputGroup>
             {/* Login , Cart and colormode */}
-            <HStack w = {{base : '120px','301px' : '120px','620px' : '220px'}} justify={'space-between'}>
+            <HStack key = {Math.random()} w = {{base : '120px','301px' : '120px','620px' : '220px'}} justify={'space-between'}>
                 <Button display = {{base : 'none','620px' : 'block'}} borderRadius={'4px'} fontSize={'16px'} fontWeight={500} variant={'none'} color = 'white' bg = {'primary.100'} px = {{base : '20px','760px' : '30px'}}>Login</Button>
                 {/* visible on responsive screen */}
                 <Box display = {{base : 'block','620px' : 'none'}}>
