@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -12,9 +13,61 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
+import { login } from "../Redux/AuthReducer/action";
 
 export default function Login() {
+  const { isLoggedIn } = useSelector((store) => {
+    return {
+      isLoggedIn: store.AuthReducer.isLoggedIn,
+    };
+  });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const toast = useToast();
+
+  const handleLogin = () => {
+    const details = { email, password };
+
+    dispatch(login(details)).then((res) => {
+      if (res === "Incorrect password ") {
+        toast({
+          title: "Incorrect Password.",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+        });
+      } else if (res === "User not register") {
+        toast({
+          title: "You are not Registered.",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Login Success",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/");
+      }
+    });
+  };
+
+  // if (isLoggedIn) {
+  //   if (role === "admin" || role === "Admin" || role === "ADMIN") {
+  //     return <Navigate to="/admin" />;
+  //   } else {
+  //     return <Navigate to="/" />;
+  //   }
+  // }
+
   return (
     <Flex
       minH={"80vh"}
@@ -38,11 +91,14 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={(e) => setEmail(e.target.value)} type="email" />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+              />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -65,6 +121,7 @@ export default function Login() {
                 color={"white"}
                 _hover={{ bgColor: "rgb(5,161,163)" }}
                 bgColor={"rgb(15,181,183)"}
+                onClick={handleLogin}
               >
                 Sign in
               </Button>

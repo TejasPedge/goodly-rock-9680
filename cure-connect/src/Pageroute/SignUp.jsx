@@ -21,20 +21,51 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { validate } from "email-validator";
+import axios from "axios";
 
 export default function Signup() {
   const initData = {
     name: "",
     email: "",
     password: "",
-    gender: "",
-    role: "",
   };
+
   const [userData, setUserData] = useState(initData);
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleSignUp = () => {
+    axios
+      .post(process.env.REACT_APP_BASE_URL + `/users/register`, userData)
+      .then((res) => {
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 4000,
+          position: "top",
+          isClosable: true,
+        });
+        navigate("/login");
+        onClose();
+      })
+      .catch((err) => {
+        if (err.response.data == "User Already Registered") {
+          toast({
+            title: "User Already Exist",
+            status: "error",
+            duration: 4000,
+            position: "top",
+            isClosable: true,
+          });
+        } else {
+          console.log(err.response);
+        }
+      });
+  };
 
   return (
     <Flex
@@ -57,24 +88,13 @@ export default function Signup() {
           bg={useColorModeValue("white", "gray.700")}
           p={8}
           boxShadow={"lg"}
-          maxW="4xl"
+          w="450px"
         >
           <Stack spacing={4}>
             <HStack>
-              <Box>
+              <Box w="100%">
                 <FormControl id="name" isRequired>
-                  <FormLabel>FirstName</FormLabel>
-                  <Input
-                    onChange={(e) =>
-                      setUserData({ ...userData, name: e.target.value })
-                    }
-                    type="text"
-                  />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="name" isRequired>
-                  <FormLabel>LastName</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <Input
                     onChange={(e) =>
                       setUserData({ ...userData, name: e.target.value })
@@ -84,24 +104,7 @@ export default function Signup() {
                 </FormControl>
               </Box>
             </HStack>
-            <Select
-              onChange={(e) =>
-                setUserData({ ...userData, role: e.target.value })
-              }
-              placeholder="Select role"
-            >
-              <option value="user">User</option>
-              <option value="admin">Register as a seller</option>
-            </Select>
-            <Select
-              onChange={(e) =>
-                setUserData({ ...userData, gender: e.target.value })
-              }
-              placeholder="Select gender"
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </Select>
+
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input
@@ -139,19 +142,7 @@ export default function Signup() {
                 _hover={{ bgColor: "rgb(5,161,163)" }}
                 bgColor={"rgb(15,181,183)"}
                 color={"white"}
-                onClick={() => {
-                  if (validate(userData.email)) {
-                    onOpen();
-                  } else {
-                    toast({
-                      title: "Please Enter Valid Email",
-                      status: "error",
-                      duration: 3000,
-                      position: "top",
-                      isClosable: true,
-                    });
-                  }
-                }}
+                onClick={handleSignUp}
               >
                 Sign up
               </Button>
