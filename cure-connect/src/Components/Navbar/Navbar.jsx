@@ -25,7 +25,7 @@ return (
         <HStack w = {{base : '95%','816px' : '85%','1063px' : '78%'}} m = 'auto' justify={'space-between'}>
             {/* Logo of the image */}
 
-            <HStack key = {Math.random()} w = {{'620px' : 'none'}}>
+            <HStack key = {Math.random} w = {{'620px' : 'none'}}>
                 <Box mr='10px' display = {{base : 'flex','620px' : 'none'}}>
                     <HiMenuAlt1 onClick = {onOpen} color = {useColorModeValue('black','aqua')} size = '25px'/>
                 </Box>
