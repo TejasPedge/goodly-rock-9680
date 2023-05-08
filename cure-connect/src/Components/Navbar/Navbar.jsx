@@ -12,6 +12,7 @@ import {MdOutlineLightMode} from 'react-icons/md'
 import {HiMenuAlt1} from 'react-icons/hi'
 import NavOptions from './NavComponents/NavOptions';
 import DrawerComp from './NavComponents/Drawer';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -31,11 +32,15 @@ return (
                 </Box>
 
                 <Box display = {{base : 'block','620px' : 'none'}}>
-                    <Image w = '60px' src = {useColorModeValue(MobileScreen_Logo_LT,MobileScreen_Logo_DT)}></Image>
+                    <Link to = '/'>
+                        <Image w = '60px' src = {useColorModeValue(MobileScreen_Logo_LT,MobileScreen_Logo_DT)}></Image>
+                    </Link>
                 </Box>
 
                 <Box display = {{base : 'none','620px' : 'block'}}>
-                    <Image w = {{base : '190px','929px' : '220px'}} src = {useColorModeValue(LightTheme_cureconnect_Logo,DarkTheme_cureconnect_Logo)}></Image>
+                    <Link to = '/'>
+                        <Image w = {{base : '190px','929px' : '220px'}} src = {useColorModeValue(LightTheme_cureconnect_Logo,DarkTheme_cureconnect_Logo)}></Image>
+                    </Link>
                 </Box>
             </HStack>
             {/* SearchBox */}
@@ -57,7 +62,9 @@ return (
             </InputGroup>
             {/* Login , Cart and colormode */}
             <HStack key = {Math.random()} w = {{base : '120px','301px' : '120px','620px' : '220px'}} justify={'space-between'}>
-                <Button display = {{base : 'none','620px' : 'block'}} borderRadius={'4px'} fontSize={'16px'} fontWeight={500} variant={'none'} color = 'white' bg = {'primary.100'} px = {{base : '20px','760px' : '30px'}}>Login</Button>
+                <Link to = '/login'>
+                    <Button display = {{base : 'none','620px' : 'block'}} borderRadius={'4px'} fontSize={'16px'} fontWeight={500} variant={'none'} color = 'white' bg = {'primary.100'} px = {{base : '20px','760px' : '30px'}}>Login</Button>
+                </Link>
                 {/* visible on responsive screen */}
                 <Box display = {{base : 'block','620px' : 'none'}}>
                     <CgSearch color={useColorModeValue('black','aqua')}  size = '20px' />
