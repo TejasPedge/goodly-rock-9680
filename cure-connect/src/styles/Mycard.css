@@ -1,0 +1,14 @@
+.mycard{
+    width: 292px;
+   
+    height: 175px;
+    background-color: gray;
+    margin: 10px;
+    color: white;
+}
+
+.mycard img{
+    width: 292px;
+   
+    height: 175px;
+}

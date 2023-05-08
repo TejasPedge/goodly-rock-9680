@@ -1,0 +1,15 @@
+.four-div{
+    margin-top: 50px;
+    margin-left: 125px;
+    margin-right: 125px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    row-gap: 50px;
+    column-gap: 20px;
+}
+
+.four-div img{
+    width: 614.6px;
+    height: 383.13px;
+}

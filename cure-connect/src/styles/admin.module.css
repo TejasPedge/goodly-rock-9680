@@ -1,0 +1,298 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.adTit{
+    color: #902735;
+    text-align: center;
+    margin-top: 50px;
+}
+.adminMainBox{
+    box-shadow: rgba(236, 4, 4, 0.349) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    width: 80%;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    border-radius: 10px;
+}
+.adminUserDetail{
+    width: 80%;
+    box-shadow: rgba(249, 125, 2, 0.3) 0px 0px 0px 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.adminTotSaleBox{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+    
+}
+.saleMiniBox{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    width: 23%;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+.saleImg{
+    width: 30%;
+    margin: auto;
+}
+.saleImg img{
+    width: 100%;
+}
+.saleMiniBox h3{
+    color: #902735;
+    margin-bottom: 10px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.saleMiniBox h5{
+    color: #902735;
+    font-size: 14px;
+}
+.mainDetailBox{
+    
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.mainDetaBox1{
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 2px;
+    width: 45%;
+    padding-top: 20px;
+    border-radius: 10px;
+}
+.mainDetaBox1 h1{
+    font-size: 18px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #902735;
+    opacity: 80%;
+    margin-bottom: 10px;
+}
+.mainDetaBox1 hr{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+    color: #902735;
+}
+.detailBoxMini{
+    display: flex;
+    justify-content: space-between;
+    
+    width: 90%;
+    margin: auto;
+    padding-top: 5px;
+    padding-left: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.detailBoxTIt{
+    /* border: 1px solid teal; */
+    width: 75%;
+}
+.detailBoxTIt h1{
+    text-align: start;
+    font-size: 15px;
+}
+.detailBoxNUmGreen{
+    /* border: 1px solid teal; */
+    width: 20%;
+}
+.detailBoxNUmGreen h1{
+    text-align: start;
+    font-size: 15px;
+}
+
+.greenST{
+    color: #fff;
+    background-color: #CCFF90;
+}
+.mainDetaBox2{
+    width: 45%;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 2px;
+    border-radius: 10px;
+}
+.mainDetaBox2 img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ---sidebarcss--- */
+.adminSideBar{
+    box-shadow: rgba(249, 125, 2, 0.3) 0px 0px 0px 2px;
+    width: 15%;
+    height: 500px;
+    border-radius: 20px;
+}
+.adminSideBarImg{
+    width: 90%;
+    margin: auto;
+    border-radius: 100px;
+    margin-top: 30px;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 1px;
+    margin-bottom: 70px;
+}
+.adminSideBarImg img{
+    width: 100%;
+    border-radius: 100px;
+}
+.sideBtns{
+    font-weight: bold;
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px;
+    padding: 7px 0px;
+    background: #03A9F4;
+    color: #fff;
+    opacity: 80%;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.sideBtnsDlt{
+    font-weight: bold;
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px;
+    padding: 7px 0px;
+    background: #E91E63;
+    color: #fff;
+    opacity: 80%;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* -----Add Product CSS---- */
+
+.addNewMain{
+    box-shadow: rgba(236, 4, 4, 0.349) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+
+
+.addProMainBox{
+    box-shadow: rgba(249, 125, 2, 0.3) 0px 0px 0px 3px;
+    width: 50%;
+    margin: auto;
+    border-radius: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.addnEwTit{
+    font-size: 40px;
+    font-family: sans-serif;
+    color: #902735;
+    text-align: center;
+    margin-top: 50px;
+}
+.addProMainBox form{
+    width: 90%;
+    margin: auto;
+
+}
+.addProMainBox h5{
+    margin-left: 30px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    color: #E91E63;
+    font-size: 18px;
+    opacity: 80%;
+}
+.addProMainBox input{
+    margin-left: 50px;
+    width: 80%;
+    text-align: center;
+    height: 30px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.addProMainBox select{
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 50%;
+    border-radius:10px ;
+    font-size: 15px;
+}
+.addProBtn{
+    margin-left: 33%;
+    width: 35%;
+    height: 40px;
+    border: 0px;
+    background: #03A9F4;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+/* -----DELETE CSSS ------ */
+
+.dltMainBox{
+    width: 90%;
+    margin: auto;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+.proMainBox{
+    width: 70%;
+    margin-right: 25px;
+    display: grid;
+    grid-template-columns: repeat(4,200px);
+    gap: 40px;
+    padding-top: 50px;
+    padding-left: 30px;
+}
+.dltproChild{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    text-align: center;
+    padding: 20px;
+
+}
+.dltproChild img{
+    width: 50%;
+}
+.dltproChild button{
+    margin-top: 50px;
+    width: 80%;
+    height: 30px;
+    background: #FF1744;
+    border: 0px;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}

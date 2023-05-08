@@ -1,0 +1,120 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&family=Mulish:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+
+.merri{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.merri2{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    color: #000000;
+}
+
+.heading1{
+    font-family: Montserrat Regular;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.left-box{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #fcfcfc;
+}
+
+.right-box{
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.login-span{
+    font-family: Montserrat Regular;
+    font-weight: 400;
+    color: #000;
+    font-size: 20px;
+    border-bottom: 1px solid #333;
+    line-height: 1.42857143;
+    /* margin-left: -128px; */
+    /* margin-top: 20px; */
+    
+}
+
+.register-span{
+    font-family: Montserrat Regular;
+    font-weight: 400;
+    color: #000;
+    font-size: 20px;
+    border-bottom: 1px solid #333;
+    line-height: 1.42857143;
+    /* margin-left: -128px; */
+    /* margin-top: 20px; */
+}
+
+.right-box img{
+    margin-bottom: 25px;
+    /* margin-bottom: 45px; */
+}
+
+.right-box p{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.right-box input{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    width: 330px;
+}
+
+.right-box button{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    width: 85%;
+    text-align: center;
+    margin-top: 30px;
+    /* background-color: #00c292; */
+    color: #FFF;
+    border-radius: 2px;
+    padding: 10px 10px 6px;
+    /* border: none; */
+    line-height: 22px;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-right: auto;
+    background: #902735!important;
+    color: #fff!important;
+    border: #902735!important;
+}
+
+.signup-span{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    margin-left: 115px;
+    color: #000;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: -20px;
+}
+
+.signin-span{
+    font-family: Montserrat Regular;
+    font-size: 14px;
+    margin-left: 95px;
+    color: #000;
+    font-weight: 400;
+    display: none;
+    cursor: pointer;
+    margin-top: -20px;
+}
+

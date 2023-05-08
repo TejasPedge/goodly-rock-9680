@@ -1,0 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+
+
+.SC-div {
+    /* border: 1px solid red; */
+    height: 131px;
+    width: 333px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    background-color: #fffcf5 !important;
+}
+
+.SC-div img{
+    height: 84px;
+    width: 84px;
+    margin-left: 10px;
+    border-radius: 50%;
+
+}
+
+.SC-rightdiv {
+    margin-left: 40px;
+}
+
+.span1 {
+    font-family: Merriweather;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.span2{
+    color: #777;
+    font-size: 14px;
+    font-family: Merriweather;
+}
+
+.span3{
+    color: #777777;
+    font-size: 14px;
+    font-family: Merriweather;
+}
