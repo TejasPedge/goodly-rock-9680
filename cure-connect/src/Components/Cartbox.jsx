@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
+
 // import { deleteCartItem, updateQuantity } from "../redux/CartReducer/action";
 
 const Cartbox = ({
@@ -27,6 +28,7 @@ const Cartbox = ({
   handleChange,
 }) => {
   const dispatch = useDispatch();
+
   const handleDelete = () => {
     //dispatch(deleteCartItem(_id)).then(handleChange);
   };

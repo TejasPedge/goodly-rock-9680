@@ -41,7 +41,7 @@ export const LogoutMenu = ({ Username }) => {
           <br />
           <MenuDivider />
           <MenuItem>Your Profile</MenuItem>
-          <MenuItem>Admin</MenuItem>
+          <MenuItem>Order</MenuItem>
           <MenuItem>Logout</MenuItem>
         </MenuList>
       </Menu>
