@@ -32,10 +32,10 @@ export const login = (data) => (dispatch) => {
     .catch((err) => {
       dispatch(loginFailAction());
 
-      if (err.response.data == "Incorrect password ") {
-        alert("Incorrect Password. Try again.");
-      } else if (err.response.data == "User not register") {
-        alert("Email is not registerd.");
-      }
+      // if (err.response.data == "Incorrect password ") {
+      //   alert("Incorrect Password. Try again.");
+      // } else if (err.response.data == "User not register") {
+      //   alert("Email is not registerd.");
+      // }
     });
 };

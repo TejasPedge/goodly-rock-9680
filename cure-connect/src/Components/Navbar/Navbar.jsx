@@ -34,7 +34,7 @@ const Navbar = () => {
   const { isLoggedIn, user } = useSelector((store) => {
     return {
       isLoggedIn: store.AuthReducer.isLoggedIn,
-      user: store.AuthReducer.user.user,
+      user: store.AuthReducer?.user?.user,
     };
   });
   console.log(user);
